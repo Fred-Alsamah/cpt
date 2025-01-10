@@ -20,5 +20,5 @@ class Card{
 class Player{
     private double balance;
     private double bet;
-    hitmethod+standmethod
+    hitmethod+standmethod :)
 }
