@@ -1,24 +1,63 @@
-/**
- * @author: Fred Alsamah
- * date: 05/11/2024
- * Blackjack cuz im a degenerate gambler
- */
+import java.util.ArrayList;
 
+public class Blackjack {
+    public static void main(String[] args) {
+        Dealer s = new Dealer();
+        System.out.println(s.dealer);
 
- public class Blackjack{
+        Player x = new Player(23);
+        System.out.println(x.player);
+        System.out.println(x.bet);
+        System.out.println(x.balance);
 
- }
-class Deck{
-***use a stack somehwere here
-*** variablefor every single card in the deck
+    }
 }
 
-class Card{
+class Deck{
+    
+    ArrayList<Integer> deck = new ArrayList<Integer>();
+    
+    private int two;
+    private int three;
+    private int four;
+    private int five;
+    private int six;
+    private int seven;
+    private int eight;
+    private int nine;
+    private int ten;
+    
+    
+    //use a stack somehwere here
+    //variablefor every single card in the deck
+    // hitmethod standmethod
+}
+    
 
+class Dealer{
+    protected int dealer;
+    
+    public Dealer(){
+        this.dealer = 2 + (int)(Math.random() * 20);
+    }
 }
 
 class Player{
-    private double balance;
-    private double bet;
-    hitmethod+standmethod :)
+    protected int balance;
+    protected int bet;
+    protected int player;
+
+    public Player(){
+        this.bet = 0;
+        this.balance = 100;
+        this.player = 2 + (int)(Math.random() * 20);
+    }
+
+    public Player(int bet){
+        this.bet = bet;
+        this.balance = 100 - bet;
+        this.player = 2 + (int)(Math.random() * 20);
+    }
+
 }
+
