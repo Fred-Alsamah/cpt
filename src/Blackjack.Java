@@ -1,4 +1,10 @@
-import java.util.ArrayList;
+/**
+ * @author: Fred
+ * date: 05/11/2024
+ * Blackjack cuz im a stupid degenerate gambler
+ */
+
+ import java.util.ArrayList;
 
 public class Blackjack {
     public static void main(String[] args) {
@@ -28,8 +34,8 @@ class Deck{
     private int ten;
     
     
-    //use a stack somehwere here
-    //variablefor every single card in the deck
+    //use a stack here implemented with what Mr.Habib said, and pop pop pop and then deck will decrease, and this way you do not have to get the same car twice.
+    //variable for every single card in the deck
     // hitmethod standmethod
 }
     
