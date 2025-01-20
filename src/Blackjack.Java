@@ -1,25 +1,23 @@
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
-  
+
 /**
  * @author Fred Alsamah
- * date: 05/11/2024
- * Blackjack cuz im a stupid degenerate gambler
-*/
- 
+ * @date 05/11/2024
+ * gambling is good iot shouyld be taught in schools
+ */
 public class Blackjack {
     public static void main(String[] args) {
         Game game = new Game();
         game.play();
     }
 }
- 
+
 /**
-* Manages the flow of the Blackjack game.
-*/
+ * Manages the flow of the Blackjack game.
+ */
 class Game {
- 
     protected Deck deck;
     protected Hand playerHand;
     protected Hand dealerHand;
@@ -27,6 +25,9 @@ class Game {
     protected int playerBalance;
     private String lastResult;
 
+    /**
+     * Initializes the game with a new deck, hands, and player balance.
+     */
     public Game() {
         this.scanner = new Scanner(System.in);
         this.deck = new Deck();
@@ -36,6 +37,9 @@ class Game {
         this.lastResult = "No games played yet.";
     }
 
+    /**
+     * Starts the Blackjack game and manages the gameplay loop.
+     */
     public void play() {
         System.out.println("Welcome to Blackjack!");
 
@@ -79,6 +83,9 @@ class Game {
         scanner.close();
     }
 
+    /**
+     * Resets player and dealer hands. Reshuffles the deck if it's low on cards.
+     */
     public void resetHands() {
         if (deck.getSize() < 15) {
             deck.resetDeck();
@@ -87,6 +94,9 @@ class Game {
         dealerHand.clear();
     }
 
+    /**
+     * Deals initial two cards to both the player and the dealer.
+     */
     public void initialDeal() {
         playerHand.addCard(deck.drawCard());
         playerHand.addCard(deck.drawCard());
@@ -94,6 +104,11 @@ class Game {
         dealerHand.addCard(deck.drawCard());
     }
 
+    /**
+     * Manages the player's turn, allowing them to hit or stand.
+     * 
+     * @return true if the player busts, false otherwise.
+     */
     private boolean playerTurn() {
         while (true) {
             System.out.print("Do you want to hit or stand? (h/s): ");
@@ -116,6 +131,11 @@ class Game {
         }
     }
 
+    /**
+     * Manages the dealer's turn and determines the outcome of the game.
+     * 
+     * @param bet The player's bet amount.
+     */
     public void dealerTurn(int bet) {
         System.out.println("Dealer's turn...");
         System.out.println("Dealer's hand: " + dealerHand + " (Score: " + dealerHand.calculateScore() + ")");
@@ -134,6 +154,11 @@ class Game {
         }
     }
 
+    /**
+     * Determines the winner based on the player's and dealer's scores.
+     * 
+     * @param bet The player's bet amount.
+     */
     public void determineWinner(int bet) {
         int playerScore = playerHand.calculateScore();
         int dealerScore = dealerHand.calculateScore();
@@ -154,6 +179,11 @@ class Game {
         }
     }
 
+    /**
+     * Validates and returns a valid bet amount from the player.
+     * 
+     * @return A valid bet amount within the player's balance.
+     */
     private int getValidBet() {
         while (true) {
             int bet = scanner.nextInt();
@@ -170,14 +200,20 @@ class Game {
 
 /**
  * Handles the creation and management of the card deck.
-*/
+ */
 class Deck {
     protected ArrayList<String> deck;
 
+    /**
+     * Initializes and shuffles a new deck of cards.
+     */
     public Deck() {
         resetDeck();
     }
 
+    /**
+     * Resets the deck to a full 52 cards and shuffles them.
+     */
     public void resetDeck() {
         String[] suits = {"Hearts", "Diamonds", "Clubs", "Spades"};
         String[] ranks = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"};
@@ -192,37 +228,59 @@ class Deck {
         Collections.shuffle(deck);
     }
 
+    /**
+     * Draws a card from the top of the deck.
+     * 
+     * @return The drawn card.
+     */
     public String drawCard() {
         return deck.remove(0);
     }
 
+    /**
+     * Returns the current size of the deck.
+     * 
+     * @return The number of cards remaining in the deck.
+     */
     public int getSize() {
         return deck.size();
     }
 }
 
 /**
- * Represents a player's or dealer's hand.
-*/
+ * Represents a player's or dealer's hand in the game.
+ */
 class Hand {
     protected ArrayList<String> hand;
 
+    /**
+     * Initializes an empty hand.
+     */
     public Hand() {
         this.hand = new ArrayList<>();
     }
 
-    public Hand( ArrayList<String> hand) {
-        this.hand = hand;
-    }
-
+    /**
+     * Adds a card to the hand.
+     * 
+     * @param card The card to add.
+     */
     public void addCard(String card) {
         hand.add(card);
     }
 
+    /**
+     * Clears all cards from the hand.
+     */
     public void clear() {
         hand.clear();
     }
 
+    /**
+     * Calculates the score of the hand, treating Aces as 1 or 11.
+     * 
+     * @return The total score of the hand.
+     */
     public int calculateScore() {
         int score = 0;
         int aces = 0;
@@ -247,13 +305,22 @@ class Hand {
         return score;
     }
 
+    /**
+     * Gets the first card in the hand.
+     * 
+     * @return The first card.
+     */
     public String getFirstCard() {
         return hand.get(0);
     }
 
+    /**
+     * Returns a string representation of the hand.
+     * 
+     * @return A string listing the cards in the hand.
+     */
     @Override
     public String toString() {
         return hand.toString();
     }
 }
- 
